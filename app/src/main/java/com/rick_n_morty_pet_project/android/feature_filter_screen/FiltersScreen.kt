@@ -1,5 +1,6 @@
 package com.rick_n_morty_pet_project.android.feature_filter_screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,8 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rick_n_morty_pet_project.android.R
-import com.rick_n_morty_pet_project.android.feature_character_screen_data.CharacterScreenState
-import com.rick_n_morty_pet_project.android.ui.Bars.TopBar
+import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharactersScreenState
+import com.rick_n_morty_pet_project.android.ui.top_bars.TopBar
 
 @Composable
 fun FiltersScreen(
@@ -47,7 +49,7 @@ fun FiltersScreen(
         topBar = {
             TopBar(
                 isSearchMode = false,
-                CharacterScreenState(),
+                CharactersScreenState(),
             )
         }
     ) {
@@ -55,6 +57,7 @@ fun FiltersScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
+                .background(color = Color.White)
         ) {
 
             FilterName("Character")
@@ -83,14 +86,14 @@ fun FiltersScreen(
 
             FilterItem(isEpCodeChange, "Episode code", "S0101")
 
-//            Button(
-//                modifier = Modifier
-//                    .align(alignment = Alignment.CenterHorizontally)
-//                    .fillMaxWidth()
-//                    .padding(8.dp),
-//                onClick = {},
-//                content = { Text("Применить", fontSize = 16.sp) },
-//            )
+            Button(
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                onClick = {},
+                content = { Text("Применить", fontSize = 16.sp) },
+            )
         }
     }
 }
@@ -142,7 +145,7 @@ fun FilterItem(
                     .align(alignment = Alignment.Start),
                 text = filterName,
                 fontSize = 16.sp,
-                )
+            )
 
             Box(
                 modifier = Modifier
@@ -161,9 +164,17 @@ fun FilterItem(
                         modifier = Modifier
                             .padding(4.dp)
                             .align(alignment = Alignment.CenterStart)
-                            .fillMaxWidth(),
+                            .fillMaxSize(),
                         value = "",
                         onValueChange = {},
+                        colors = TextFieldDefaults.colors().copy(
+                            focusedTextColor = Color.White,
+                            unfocusedTextColor = Color.White,
+                            disabledTextColor = Color.White,
+                            errorTextColor = Color.White,
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                        )
                     )
                 } else {
 
@@ -174,7 +185,7 @@ fun FilterItem(
                             .padding(start = 10.dp)
                             .align(alignment = Alignment.CenterStart),
                         fontSize = 18.sp,
-                        color = Color.DarkGray,
+                        color = Color.DarkGray.copy(alpha = 0.5f),
                     )
                 }
 

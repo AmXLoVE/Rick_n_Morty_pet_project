@@ -1,4 +1,4 @@
-package com.rick_n_morty_pet_project.android.feature_character_screen
+package com.rick_n_morty_pet_project.android.feature_characters_screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -9,8 +9,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.rick_n_morty_pet_project.android.R
-import com.rick_n_morty_pet_project.android.feature_character_screen_data.CharacterScreenState
-import com.rick_n_morty_pet_project.android.ui.Bars.TopBar
+import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharacterState
+import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharactersScreenState
+import com.rick_n_morty_pet_project.android.ui.top_bars.TopBar
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -53,8 +54,8 @@ fun CharacterScreenPreview() {
 }
 
 object MyViewModel{
-    private val _uiState = MutableStateFlow(CharacterScreenState())
-    val uiState: StateFlow<CharacterScreenState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(CharactersScreenState())
+    val uiState: StateFlow<CharactersScreenState> = _uiState.asStateFlow()
 
     init {
         _uiState.value = _uiState.value.copy(
@@ -74,10 +75,3 @@ object MyViewModel{
         )
     }
 }
-
-data class CharacterState(
-    val name: String = "Alex",
-    val image: Int = R.drawable._598,
-    val type: String = "Rick's Toxic Side",
-    val gender: String = "Male",
-)

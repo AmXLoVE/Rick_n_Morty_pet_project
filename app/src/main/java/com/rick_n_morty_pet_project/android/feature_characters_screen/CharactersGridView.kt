@@ -1,4 +1,4 @@
-package com.rick_n_morty_pet_project.android.feature_character_screen
+package com.rick_n_morty_pet_project.android.feature_characters_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rick_n_morty_pet_project.android.R
+import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharacterState
 
 @Composable
 fun CharactersGridView(

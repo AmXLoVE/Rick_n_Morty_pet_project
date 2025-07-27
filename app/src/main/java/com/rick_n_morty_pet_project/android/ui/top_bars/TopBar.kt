@@ -1,4 +1,4 @@
-package com.rick_n_morty_pet_project.android.ui.Bars
+package com.rick_n_morty_pet_project.android.ui.top_bars
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -20,12 +20,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rick_n_morty_pet_project.android.R
-import com.rick_n_morty_pet_project.android.feature_character_screen_data.CharacterScreenState
+import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharactersScreenState
 
 @Composable
 fun TopBar(
     isSearchMode: Boolean,
-    state: CharacterScreenState,
+    state: CharactersScreenState,
 ) {
 
     Row(
