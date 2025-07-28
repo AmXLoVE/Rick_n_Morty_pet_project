@@ -5,11 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -90,13 +92,27 @@ fun DrawInfo(
                     contentScale = ContentScale.Crop
                 )
 
-                DrawTitle(
-                    character.status,
-                    Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(4.dp),
-                    color = Color.LightGray
-                )
+                Row(
+                    modifier = Modifier
+                        .align(alignment = Alignment.CenterHorizontally)
+                ) {
+
+                    Icon(
+                        modifier = Modifier
+                            .align(alignment = Alignment.CenterVertically)
+                            .size(16.dp),
+                        painter = painterResource(R.drawable.baseline_circle_24),
+                        contentDescription = "",
+
+                    )
+
+                    DrawTitle(
+                        character.status,
+                        Modifier
+                            .padding(4.dp),
+                        color = Color.LightGray
+                    )
+                }
             }
         }
 
@@ -107,7 +123,7 @@ fun DrawInfo(
 
             Column(
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(start = 20.dp)
                     .weight(1f)
             ) {
 
@@ -145,12 +161,48 @@ fun DrawDescription(
     color: Color = Color.Black
 ) {
 
-    Text(
-        modifier = modifier,
-        text = description,
-        fontSize = 18.sp,
-        color = color,
-        maxLines = 2,
+    Box(
+        modifier = Modifier
+            .padding(4.dp)
+            .size(
+                width = 170.dp,
+                height = 40.dp,
+            )
+            .clip(shape = RoundedCornerShape(40))
+            .background(color = Color.DarkGray),
+    ) {
+
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            Icon(
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterVertically)
+                    .padding(start = 12.dp),
+                painter = painterResource(R.drawable.baseline_search_24),
+                contentDescription = "",
+                tint = Color.White,
+            )
+
+            Text(
+                modifier = modifier
+                    .align(alignment = Alignment.CenterVertically),
+                text = " $description",
+                fontSize = 18.sp,
+                color = Color.White,
+                maxLines = 2,
+            )
+        }
+    }
+}
+
+@Composable
+fun DrawExploreIcon() {
+    Icon(
+        modifier = Modifier,
+        painter = painterResource(R.drawable.baseline_search_24),
+        contentDescription = "",
     )
 }
 
