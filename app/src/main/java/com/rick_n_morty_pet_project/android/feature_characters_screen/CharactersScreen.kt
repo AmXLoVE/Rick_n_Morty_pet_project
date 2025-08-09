@@ -8,7 +8,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.rick_n_morty_pet_project.android.R
 import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharacterState
 import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharactersScreenState
 import com.rick_n_morty_pet_project.android.ui.top_bars.TopBar
@@ -17,14 +16,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 @Composable
-fun CharacterScreen(
+fun CharactersScreen(
 
 ) {
-    CharacterScreenContent()
+    CharactersScreenContent()
 }
 
 @Composable
-private fun CharacterScreenContent(
+private fun CharactersScreenContent(
 ) {
     val state by MyViewModel.uiState.collectAsState()
 
@@ -50,7 +49,7 @@ private fun CharacterScreenContent(
 @Preview
 @Composable
 fun CharacterScreenPreview() {
-    CharacterScreenContent()
+    CharactersScreenContent()
 }
 
 object MyViewModel{

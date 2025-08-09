@@ -26,15 +26,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rick_n_morty_pet_project.android.R
-import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharactersScreenState
-import com.rick_n_morty_pet_project.android.ui.top_bars.TopBar
+import com.rick_n_morty_pet_project.android.ui.top_bars.TopBarBack
 
 @Composable
 fun FiltersScreen(
-
+    onFilterApply: () -> Unit,
 ) {
 
-    val isCharNameChange = true
+    val isCharNameChange = false
     val isCharStatusChange = false
     val isCharSpeciesChange = false
     val isCharTypeChange = false
@@ -47,9 +46,8 @@ fun FiltersScreen(
 
     Scaffold(
         topBar = {
-            TopBar(
-                isSearchMode = false,
-                CharactersScreenState(),
+            TopBarBack(
+                returnScreen = {},
             )
         }
     ) {
@@ -91,7 +89,7 @@ fun FiltersScreen(
                     .align(alignment = Alignment.CenterHorizontally)
                     .fillMaxWidth()
                     .padding(8.dp),
-                onClick = {},
+                onClick = onFilterApply,
                 content = { Text("Применить", fontSize = 16.sp) },
             )
         }
@@ -101,7 +99,7 @@ fun FiltersScreen(
 @Preview
 @Composable
 fun FiltersScreenPreview() {
-    FiltersScreen()
+    FiltersScreen({})
 }
 
 @Composable

@@ -2,6 +2,7 @@ package com.rick_n_morty_pet_project.android.feature_character_info_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -27,8 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.rick_n_morty_pet_project.android.R
 import com.rick_n_morty_pet_project.android.core_network_data.CharacterDTO
 import com.rick_n_morty_pet_project.android.core_network_data.characterLocation.LocationDTO
-import com.rick_n_morty_pet_project.android.feature_characters_screen_data.CharactersScreenState
-import com.rick_n_morty_pet_project.android.ui.top_bars.TopBar
+import com.rick_n_morty_pet_project.android.ui.top_bars.TopBarBack
 
 @Composable
 fun CharacterInfoScreen(
@@ -36,9 +35,8 @@ fun CharacterInfoScreen(
 ) {
     Scaffold(
         topBar = {
-            TopBar(
-                isSearchMode = false,
-                CharactersScreenState()
+            TopBarBack(
+                returnScreen = {},
             )
         }
     ) {
@@ -70,11 +68,11 @@ fun DrawInfo(
             ) {
                 DrawTitle(character.name)
 
-                DrawDescription(character.gender)
+                DrawDescription(character.gender, onSearch = {})
 
-                DrawDescription(character.species)
+                DrawDescription(character.species, onSearch = {})
 
-                DrawDescription(character.type)
+                DrawDescription(character.type, onSearch = {})
             }
 
             Column(
@@ -129,12 +127,12 @@ fun DrawInfo(
 
                 DrawTitle("Location")
 
-                DrawDescription(character.location.name)
+                DrawDescription(character.location.name, onSearch = {})
 
                 DrawTitle("Episodes")
 
                 character.episode.forEach {
-                    DrawDescription(it)
+                    DrawDescription(it, onSearch = {})
                 }
 
             }
@@ -158,7 +156,8 @@ fun DrawTitle(title: String, modifier: Modifier = Modifier, color: Color = Color
 fun DrawDescription(
     description: String,
     modifier: Modifier = Modifier,
-    color: Color = Color.Black
+    color: Color = Color.White,
+    onSearch: () -> Unit,
 ) {
 
     Box(
@@ -175,6 +174,9 @@ fun DrawDescription(
         Row(
             modifier = Modifier
                 .fillMaxSize()
+                .clickable(
+                    onClick = onSearch,
+                )
         ) {
             Icon(
                 modifier = Modifier
@@ -182,7 +184,7 @@ fun DrawDescription(
                     .padding(start = 12.dp),
                 painter = painterResource(R.drawable.baseline_search_24),
                 contentDescription = "",
-                tint = Color.White,
+                tint = color,
             )
 
             Text(
@@ -190,20 +192,11 @@ fun DrawDescription(
                     .align(alignment = Alignment.CenterVertically),
                 text = " $description",
                 fontSize = 18.sp,
-                color = Color.White,
+                color = color,
                 maxLines = 2,
             )
         }
     }
-}
-
-@Composable
-fun DrawExploreIcon() {
-    Icon(
-        modifier = Modifier,
-        painter = painterResource(R.drawable.baseline_search_24),
-        contentDescription = "",
-    )
 }
 
 @Preview
@@ -211,7 +204,7 @@ fun DrawExploreIcon() {
 fun CharacterInfoScreenPreview() {
     CharacterInfoScreen(
         CharacterDTO(
-            name = "Rick",
+            name = "Rick Sanchez",
             id = 0,
             status = "Alive",
             species = "species",
